@@ -1,9 +1,9 @@
 package main
 
 import (
-    "fmt"
-    "sync"
-    //"time"
+	"fmt"
+	"sync"
+	//"time"
 )
 
 type People interface {
@@ -55,14 +55,14 @@ func introducePeople(ppl []People) {
 	}
 }
 func main() {
-    var wg sync.WaitGroup
+	var wg sync.WaitGroup
 	john := Developer{Person{"John", 35, "111-222-XXX"}, "Accel North America", "Golang"}
 	alice := Student{Person{"Alice", 42, "111-222-XXX"}, "UM"}
 	peopleArr := [...]People{&john, &alice}
-    go func() {
-        defer wg.Done()
-        introducePeople(peopleArr[0:len(peopleArr)])
-    }()
-    wg.Add(1)
-    wg.Wait()
+	go func() {
+		defer wg.Done()
+		introducePeople(peopleArr[0:len(peopleArr)])
+	}()
+	wg.Add(1)
+	wg.Wait()
 }
